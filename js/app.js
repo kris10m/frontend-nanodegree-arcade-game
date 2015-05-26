@@ -31,7 +31,7 @@ var Enemy = function(x, y) {
     this.sprite = 'images/enemy-bug.png'; //"sprite" represents an enemy object
     this.x = x; //coordinates set in allEnemies object
     this.y = y; //coordinates set in allEnemies object
-}
+};
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -50,12 +50,12 @@ Enemy.prototype.update = function(dt) {
     if (collision(player.x,player.y, this.x, this.y)) {
         playerInit();
     }
-}
+};
 
 // Draws the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -64,41 +64,45 @@ var Player = function(x, y) {
     this.sprite = "images/char-boy.png";
     this.x = x; // starting position x-coord set when Player object is instantiated
     this.y = y; // starting position y-coord set when Player object is instantiated
-}
+};
 
 Player.prototype.update = function () {
 //does nothing, waste of typing and space
-}
+};
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 //controls player movement and checks to ensure the player stays on the canvas
 Player.prototype.handleInput = function(keys) {
     switch(keys) {
-        case 'left' : if (this.x > 0) {
+        case 'left' :
+            if (this.x > 0) {
             this.x = this.x - 101;
             }
         break;
-        case 'right': if (this.x < 404) {
+        case 'right':
+            if (this.x < 404) {
             this.x = this.x + 101;
             }
         break;
         //resets original player position once it makes it to the water; alerts player they scored
-        case 'up': if (this.y > 3) { //possible combos 3, 78, 153, 228
+        case 'up':
+            if (this.y > 3) { //possible combos 3, 78, 153, 228
                 this.y = this.y - 75;
             } else {
                 playerInit();
                 alert('YOU ROCK!');
             }
         break;
-        case 'down': if (this.y < 375) {
+        case 'down':
+            if (this.y < 375) {
             this.y = this.y + 75;
             }
         break;
         }
-}
+};
 
 // Now instantiate your objects.
 var allEnemies = [];
@@ -108,7 +112,7 @@ allEnemies[1] = new Enemy(250, 153);
 allEnemies[2] = new Enemy(450, 228);
 
 // Place the player object in a variable called player
-var player = new Player(202, 303);
+var player = new Player(202,303);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
